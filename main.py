@@ -2,37 +2,35 @@ import random
 
 
 class Warrior:
-  def __init__(self,health):
+  def __init__(self,health): # класс воина с конструктором, в котором инициализируется количество жизней
     self.health = health
 
-  def hit(self,target,target1):
-    if target.health > 0:
-      target.health -= 20
-      if target1 == warrior1:
+  def hit(self,target,target1): # метод удара, который вычитает здоровье у цели и выводит информацию на экран
+    if target.health > 0: # если у цели есть здоровье, то можно проводить атаку
+      target.health -= 20 # вычитание здоровья у цели
+      if target1 == warrior1: # условие для вывода имени воина при атаке
         target1 = "Воин1"
       if target1 == warrior2:
         target1 = "Воин2"
-      print(target1, " Атакует")
-      print(target.health/20, "УДАРОВ ДО ПОБЕДЫ")
-    if target.health == 0:
-      print(target1, " Победитель \n GAME OVER")
+      print(target1, " Атакует") # вывод имени атакующего воина
+      print(target.health/20, "УДАРОВ ДО ПОБЕДЫ") # вывод количества ударов, необходимых для победы
+    if target.health == 0: # если у цели не осталось здоровья, она побеждена
+      print(target1, " Победитель \n GAME OVER") # вывод информации о победителе
 
+warrior1 = Warrior(100) # создание объекта класса Warrior с 100 жизнями
+warrior2 = Warrior(100) # создание объекта класса Warrior с 100 жизнями
 
-warrior1 = Warrior(100)
-warrior2 = Warrior(100)
+q = int(input("Нажмите 1 чтобы ударить, 2 чтобы остановить бой\n")) # предложение пользователю выбрать действие
 
-
-q = int(input("Нажмите 1 чтобы ударить, 2 чтобы остановить бой"))
-
-while q != 2:
-  if q == 1:
-    j = random.randint(1,3)
-    if j % 2 == 0:
-      warrior1.hit(warrior2,warrior1)
-      q = int(input("Нажмите 1 чтобы ударить:"))
-    else:
-      warrior2.hit(warrior1,warrior2)
-      q = int(input("Нажмите 1 чтобы ударить:"))
-  else:
-    print("=)")
-    break
+while q != 2: # пока пользователь не выберет остановить бой
+  if q == 1: # если пользователь выбирает ударить
+    j = random.randint(1,3) # генерация случайного числа от 1 до 3
+    if j % 2 == 0: # если оно четное
+      warrior1.hit(warrior2,warrior1) # воин1 атакует воина2
+      q = int(input("Нажмите 1 чтобы ударить:")) # предложение пользователю выбрать действие
+    else: # если число нечетное
+      warrior2.hit(warrior1,warrior2) # воин2 атакует воина1
+      q = int(input("Нажмите 1 чтобы ударить:")) # предложение пользователю выбрать действие
+  else: # если пользователь вводит что-то кроме 1 или 2
+    print("=)") # вывод смайлика
+    break # завершение программы
